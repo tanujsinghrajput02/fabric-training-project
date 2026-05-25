@@ -1,0 +1,42 @@
+{
+  "config": "{\"version\":\"5.73\",\"themeCollection\":{\"baseTheme\":{\"name\":\"CY26SU05\",\"version\":{\"visual\":\"2.9.0\",\"report\":\"3.3.0\",\"page\":\"2.3.1\"},\"type\":2}},\"activeSectionIndex\":0,\"defaultDrillFilterOtherVisuals\":true,\"settings\":{\"useNewFilterPaneExperience\":true,\"allowChangeFilterTypes\":true,\"useStylableVisualContainerHeader\":true,\"queryLimitOption\":6,\"useEnhancedTooltips\":true,\"exportDataMode\":1,\"useDefaultAggregateDisplayName\":true},\"objects\":{\"section\":[{\"properties\":{\"verticalAlignment\":{\"expr\":{\"Literal\":{\"Value\":\"'Top'\"}}}}}]}}",
+  "layoutOptimization": 0,
+  "resourcePackages": [
+    {
+      "resourcePackage": {
+        "disabled": false,
+        "items": [
+          {
+            "name": "CY26SU05",
+            "path": "BaseThemes/CY26SU05.json",
+            "type": 202
+          }
+        ],
+        "name": "SharedResources",
+        "type": 2
+      }
+    }
+  ],
+  "sections": [
+    {
+      "config": "{}",
+      "displayName": "Page 1",
+      "displayOption": 1,
+      "filters": "[]",
+      "height": 720.00,
+      "name": "70521cc0af8e9a40a189",
+      "visualContainers": [
+        {
+          "config": "{\"name\":\"fa1afebb77813ddac60b\",\"layouts\":[{\"id\":0,\"position\":{\"x\":88.40028188865398,\"y\":95.61663143058492,\"z\":0,\"width\":1064.4115574348132,\"height\":265.20084566596194,\"tabOrder\":0}}],\"singleVisual\":{\"visualType\":\"pivotTable\",\"projections\":{\"Rows\":[{\"queryRef\":\"dim_customer.region\",\"active\":true}],\"Columns\":[{\"queryRef\":\"fact_orders.order_date\",\"active\":true}],\"Values\":[{\"queryRef\":\"CountNonNull(gold_monthly_summary.total_revenue)\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"d\",\"Entity\":\"dim_customer\",\"Type\":0},{\"Name\":\"f\",\"Entity\":\"fact_orders\",\"Type\":0},{\"Name\":\"g\",\"Entity\":\"gold_monthly_summary\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"region\"},\"Name\":\"dim_customer.region\",\"NativeReferenceName\":\"region\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"f\"}},\"Property\":\"order_date\"},\"Name\":\"fact_orders.order_date\",\"NativeReferenceName\":\"order_date\"},{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"g\"}},\"Property\":\"total_revenue\"}},\"Function\":5},\"Name\":\"CountNonNull(gold_monthly_summary.total_revenue)\",\"NativeReferenceName\":\"Count of total_revenue\"}]},\"drillFilterOtherVisuals\":true}}",
+          "filters": "[]",
+          "height": 265.20,
+          "width": 1064.41,
+          "x": 88.40,
+          "y": 95.62,
+          "z": 0.00
+        }
+      ],
+      "width": 1280.00
+    }
+  ]
+}

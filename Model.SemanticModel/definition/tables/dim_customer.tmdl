@@ -1,0 +1,83 @@
+table dim_customer
+	lineageTag: ce0972a1-9bf3-4dbe-b378-38b57dd2f656
+	sourceLineageTag: [dbo].[dim_customer]
+
+	measure 'Total Revenue' =
+			
+			SUM(gold_monthly_summary[total_revenue])
+		lineageTag: 3948e3ea-e8c2-4e79-984f-7803d1476ac1
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Total Orders' =
+			
+			SUM(gold_monthly_summary[total_orders])
+		formatString: 0
+		lineageTag: 16678f17-93d8-40e5-9d1c-a3ecca27d2f7
+
+		changedProperty = Name
+
+		changedProperty = IsHidden
+
+	measure 'Avg Order Value' =
+			
+			AVERAGE(gold_monthly_summary[avg_order_value])
+		lineageTag: 10a17af9-cb96-402a-83c4-bc3eca11579f
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column customer_id
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 2ecefc32-e249-429f-af16-65ef3b729e21
+		sourceLineageTag: customer_id
+		summarizeBy: none
+		sourceColumn: customer_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column name
+		dataType: string
+		sourceProviderType: varchar(100)
+		lineageTag: 68aa7206-2083-4e6c-9153-c68cda0cfb88
+		sourceLineageTag: name
+		summarizeBy: none
+		sourceColumn: name
+
+		annotation SummarizationSetBy = Automatic
+
+	column region
+		dataType: string
+		sourceProviderType: varchar(100)
+		lineageTag: 151c4ba1-8890-4ea4-83d1-2f3d5265109c
+		sourceLineageTag: region
+		summarizeBy: none
+		sourceColumn: region
+
+		annotation SummarizationSetBy = Automatic
+
+	column signup_date
+		dataType: dateTime
+		formatString: General Date
+		sourceProviderType: date
+		lineageTag: 7c9d367e-f3a8-47c0-9ab6-2b5d77cf8f3a
+		sourceLineageTag: signup_date
+		summarizeBy: none
+		sourceColumn: signup_date
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dim_customer = entity
+		mode: directLake
+		source
+			entityName: dim_customer
+			schemaName: dbo
+			expressionSource: DatabaseQuery
+
+	annotation PBI_ResultType = Table
+

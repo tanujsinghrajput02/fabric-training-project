@@ -1,0 +1,108 @@
+[
+  {
+    "uniqueIdentifier": "50e85651-6e94-4407-9f05-c4769a39438a",
+    "payload": {
+      "name": "FabricTraining_LH",
+      "description": "Container Description",
+      "type": "rthSubscriptions"
+    },
+    "type": "container-v1"
+  },
+  {
+    "uniqueIdentifier": "97b56a46-d527-4592-b708-765dc7236e4b",
+    "payload": {
+      "name": "Fabric item action",
+      "fabricItem": {
+        "itemId": "d65bd8e8-5351-952d-470f-3ee054003a6c",
+        "workspaceId": "00000000-0000-0000-0000-000000000000",
+        "itemType": "Pipeline"
+      },
+      "jobType": "Pipeline",
+      "parentContainer": {
+        "targetUniqueIdentifier": "50e85651-6e94-4407-9f05-c4769a39438a"
+      }
+    },
+    "type": "fabricItemAction-v1"
+  },
+  {
+    "uniqueIdentifier": "e25d6695-577c-4524-9faf-db077ab8ed34",
+    "payload": {
+      "name": "Fabric_Training_WS event",
+      "connection": {
+        "scope": "Artifact",
+        "tenantId": "2d603307-950c-4472-926f-589c0e6f49b7",
+        "workspaceId": "53dcddee-1a16-4051-9e0a-bed919d06fe7",
+        "artifactId": "a5ad8e27-69d7-4cc7-b6c5-8739f73197d7",
+        "eventGroupType": "Microsoft.Fabric.OneLakeEvents"
+      },
+      "filterSettings": {
+        "eventTypes": [
+          {
+            "name": "Microsoft.Fabric.OneLake.FileCreated"
+          },
+          {
+            "name": "Microsoft.Fabric.OneLake.FileDeleted"
+          },
+          {
+            "name": "Microsoft.Fabric.OneLake.FileRenamed"
+          },
+          {
+            "name": "Microsoft.Fabric.OneLake.FolderCreated"
+          },
+          {
+            "name": "Microsoft.Fabric.OneLake.FolderDeleted"
+          },
+          {
+            "name": "Microsoft.Fabric.OneLake.FolderRenamed"
+          }
+        ],
+        "filters": [
+          {
+            "values": [
+              "/Tables",
+              "/Files"
+            ],
+            "operatorType": "StringBeginsWith",
+            "key": "subject"
+          }
+        ]
+      },
+      "parentContainer": {
+        "targetUniqueIdentifier": "50e85651-6e94-4407-9f05-c4769a39438a"
+      }
+    },
+    "type": "realTimeHubSource-v1"
+  },
+  {
+    "uniqueIdentifier": "8777ed7a-e192-4b87-900d-2ed320e8e35f",
+    "payload": {
+      "name": "Fabric_Training_WS event",
+      "parentContainer": {
+        "targetUniqueIdentifier": "50e85651-6e94-4407-9f05-c4769a39438a"
+      },
+      "definition": {
+        "type": "Event",
+        "instance": "{\"steps\":[{\"id\":\"f8e8b426-3b5d-423b-a191-4d87ae81d508\",\"name\":\"SourceEventStep\",\"rows\":[{\"arguments\":[{\"name\":\"entityId\",\"type\":\"string\",\"value\":\"e25d6695-577c-4524-9faf-db077ab8ed34\"}],\"kind\":\"SourceReference\",\"name\":\"SourceSelector\"}]}],\"templateId\":\"SourceEvent\",\"templateVersion\":\"1.2.5\"}"
+      }
+    },
+    "type": "timeSeriesView-v1"
+  },
+  {
+    "uniqueIdentifier": "4f4d6fb6-7e8e-48b4-a5ad-6a4ccb30dbb8",
+    "payload": {
+      "name": "schedule",
+      "parentContainer": {
+        "targetUniqueIdentifier": "50e85651-6e94-4407-9f05-c4769a39438a"
+      },
+      "definition": {
+        "type": "Rule",
+        "instance": "{\"templateId\":\"EventTrigger\",\"templateVersion\":\"1.2.5\",\"steps\":[{\"name\":\"FieldsDefaultsStep\",\"id\":\"cab656d4-5cb0-45dd-9401-65d81aa4cf0e\",\"rows\":[{\"name\":\"EventSelector\",\"kind\":\"Event\",\"arguments\":[{\"kind\":\"EventReference\",\"type\":\"complex\",\"arguments\":[{\"name\":\"entityId\",\"type\":\"string\",\"value\":\"8777ed7a-e192-4b87-900d-2ed320e8e35f\"}],\"name\":\"event\"}]}]},{\"name\":\"EventDetectStep\",\"id\":\"b03b91fe-fbeb-42e6-be59-a4b18f80fda1\",\"rows\":[{\"name\":\"OnEveryValue\",\"kind\":\"OnEveryValue\",\"arguments\":[]}]},{\"name\":\"ActStep\",\"id\":\"59fc4cc1-5c59-4bd9-9a9e-c896fffc65a1\",\"rows\":[{\"name\":\"FabricItemBinding\",\"kind\":\"FabricItemInvocation\",\"arguments\":[{\"name\":\"workspaceId\",\"type\":\"string\",\"value\":\"00000000-0000-0000-0000-000000000000\"},{\"name\":\"itemId\",\"type\":\"string\",\"value\":\"d65bd8e8-5351-952d-470f-3ee054003a6c\"},{\"name\":\"itemType\",\"type\":\"string\",\"value\":\"Pipeline\"},{\"name\":\"jobType\",\"type\":\"string\",\"value\":\"Pipeline\"},{\"name\":\"fabricJobConnectionDocumentId\",\"type\":\"string\",\"value\":\"97b56a46-d527-4592-b708-765dc7236e4b\"},{\"name\":\"parameters\",\"type\":\"array\",\"values\":[{\"kind\":\"FabricItemParameter\",\"type\":\"complex\",\"arguments\":[{\"name\":\"parameterName\",\"type\":\"string\",\"value\":\"Pass\"},{\"name\":\"parameterValue\",\"type\":\"complexArray\",\"values\":[{\"type\":\"string\",\"value\":\"true\"}]},{\"name\":\"parameterType\",\"type\":\"string\",\"value\":\"Boolean\"}]},{\"kind\":\"FabricItemParameter\",\"type\":\"complex\",\"arguments\":[{\"name\":\"parameterName\",\"type\":\"string\",\"value\":\"Subject\"},{\"name\":\"parameterValue\",\"type\":\"complexArray\",\"values\":[{\"type\":\"string\",\"value\":\"is it fail \"}]},{\"name\":\"parameterType\",\"type\":\"string\",\"value\":\"String\"}]},{\"kind\":\"FabricItemParameter\",\"type\":\"complex\",\"arguments\":[{\"name\":\"parameterName\",\"type\":\"string\",\"value\":\"Source\"},{\"name\":\"parameterValue\",\"type\":\"complexArray\",\"values\":[{\"kind\":\"EventFieldReference\",\"type\":\"complexReference\",\"arguments\":[{\"name\":\"fieldName\",\"type\":\"string\",\"value\":\"___source\"}]}]},{\"name\":\"parameterType\",\"type\":\"string\",\"value\":\"String\"}]}]},{\"name\":\"additionalInformation\",\"type\":\"array\",\"values\":[]}]}]}]}",
+        "settings": {
+          "shouldRun": true,
+          "shouldApplyRuleOnUpdate": false
+        }
+      }
+    },
+    "type": "timeSeriesView-v1"
+  }
+]
