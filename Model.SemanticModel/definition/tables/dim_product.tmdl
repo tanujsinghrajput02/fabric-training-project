@@ -1,0 +1,56 @@
+table dim_product
+	lineageTag: a4fb614c-20b6-4472-8f43-fceb0e92563c
+	sourceLineageTag: [dbo].[dim_product]
+
+	column product_id
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: da6943d6-95e6-4dbd-9524-5c29cccaae6d
+		sourceLineageTag: product_id
+		summarizeBy: none
+		sourceColumn: product_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column product_name
+		dataType: string
+		sourceProviderType: varchar(200)
+		lineageTag: f353e7cd-1d89-402f-b4c7-6a0c1e3dfd2d
+		sourceLineageTag: product_name
+		summarizeBy: none
+		sourceColumn: product_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column category
+		dataType: string
+		sourceProviderType: varchar(100)
+		lineageTag: 49b2de11-95ef-4546-8554-cc72043edec6
+		sourceLineageTag: category
+		summarizeBy: none
+		sourceColumn: category
+
+		annotation SummarizationSetBy = Automatic
+
+	column unit_price
+		dataType: decimal
+		sourceProviderType: decimal(10, 2)
+		lineageTag: b0136557-e7ec-4714-a2a0-49279d50d7f3
+		sourceLineageTag: unit_price
+		summarizeBy: none
+		sourceColumn: unit_price
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition dim_product = entity
+		mode: directLake
+		source
+			entityName: dim_product
+			schemaName: dbo
+			expressionSource: DatabaseQuery
+
+	annotation PBI_ResultType = Table
+

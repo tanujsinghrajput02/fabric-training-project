@@ -1,0 +1,12 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "KQLDatabase",
+    "displayName": "FabricTraining_Eventhouse",
+    "description": "FabricTraining_Eventhouse"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "af232ff1-968d-8b26-4906-1c6b4ff3af78"
+  }
+}

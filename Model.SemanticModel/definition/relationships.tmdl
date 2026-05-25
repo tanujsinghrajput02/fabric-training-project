@@ -1,0 +1,12 @@
+relationship bdb342d9-d118-1d07-10ba-4cf1fa20a4d7
+	fromColumn: fact_orders.customer_id
+	toColumn: dim_customer.customer_id
+
+relationship 0f39e952-42f7-632b-ca1b-5f935e1d6888
+	fromColumn: fact_orders.product_id
+	toColumn: dim_product.product_id
+
+relationship 7f96da6a-934d-4830-597b-81c8ed4ddbe1
+	fromColumn: fact_orders.total_amount
+	toColumn: gold_monthly_summary.total_revenue
+
